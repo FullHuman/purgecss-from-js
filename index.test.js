@@ -7,11 +7,9 @@ describe('PurgeFromJS', () => {
     list[0].style.color = \`red\$\{"list"\} \`;
     const a = 'b';`;
 
-    it('test', () => {
+    it('contains all the selectors', () => {
         const selectors = PurgeFromJS.extract(mockContent);
-        const expected = ['list', 'document', 'getElementsByTagName', 'p', 'kk', ]
-        const t = 'hh'
-        console.log(selectors);
-        expect(4).toBe(4);
+        const expected = ['list', 'document', 'getElementsByTagName', 'p', 'kk', 'length', 'style', 'color', 'red${', '}', 'a', 'b'];
+        expect(selectors).toEqual(expected);
     });
 });
