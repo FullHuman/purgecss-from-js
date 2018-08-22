@@ -5,7 +5,7 @@ import path from 'path';
 export default class PurgeFromJS {
     static extract(content) {
         const tokens = esprima.tokenize(content);
-        const selectors = tokens.filter((token) => {
+        let selectors = tokens.filter((token) => {
             return token.type === 'Identifier' || token.type === 'Template' || token.type === 'String';
         }).reduce((acc, token) => {
             if (token.type === 'String') {
@@ -24,6 +24,8 @@ export default class PurgeFromJS {
             return acc.concat(token.value);
         }, []);
     
+        // clear selectors from empty strings
+        selectors = selectors.filter((selector) => selector !== '');
         return [...new Set(selectors)]; // remove duplicates
     }
 }
