@@ -23,6 +23,7 @@ export default class PurgeFromJS {
             }
             return acc.concat(token.value);
         }, []);
-        return selectors;
+    
+        return [...new Set(selectors)]; // remove duplicates
     }
 }
