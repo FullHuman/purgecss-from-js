@@ -1,4 +1,4 @@
-import PurgeFromJS from './index';
+import purgeFromJS from './index';
 
 describe('PurgeFromJS', () => {
     const mockContent = `const list = document.getElementsByTagName('p'kk'');
@@ -7,7 +7,7 @@ describe('PurgeFromJS', () => {
     const a = 'b';`;
 
     it('contains all the selectors', () => {
-        const selectors = PurgeFromJS.extract(mockContent);
+        const selectors = purgeFromJS(mockContent);
         const expected = [
             'list',
             'document',
